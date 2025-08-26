@@ -1,0 +1,115 @@
+﻿
+html {
+    font-family: Arial, sans-serif;
+}
+
+.bttn {
+    cursor: pointer;
+    border-radius: 6px;
+    padding: 6px;
+    text-decoration: none;
+    font-size: .7rem;
+    font-weight: normal;
+}
+
+    .bttn.norm {
+        background: #07E;
+        color: white;
+    }
+
+    .bttn.xtra {
+        background: #085;
+        color: white;
+    }
+
+    .bttn.dngr {
+        background: #C12;
+        color: white;
+    }
+
+    .bttn.text {
+        background: none;
+        text-decoration: underline;
+        color: #333;
+    }
+
+button.bttn {
+    padding: 6px;
+    border: 1px transparent;
+}
+
+a[class^=sort] {
+    text-decoration: none;
+    color: #aaa;
+    margin: -2px;
+}
+
+a.sort-desc::after {
+    content: "🡇";
+    position: relative;
+    top: 1px;
+}
+
+a.sort-asc::after {
+    content: "🡅";
+    position: relative;
+    top: -1px;
+}
+
+table.list {
+    border-collapse: collapse;
+    padding: 20px;
+}
+
+    table.list th.clearfilter {
+        text-align: left;
+        vertical-align: top;
+    }
+
+    table.list td {
+        border: 1px solid #ccc;
+        font-size: .8rem;
+        padding: 6px;
+    }
+
+        table.list td.buttons {
+            border: none;
+        }
+
+    table.list input.filter {
+        font-size: .9rem;
+    }
+
+.form-group {
+    margin: 5px;
+    font-size: .9rem;
+    min-height: 22px;
+}
+
+    .form-group label, .form-group input {
+        display: inline-block;
+    }
+
+    .form-group label {
+        width: 100px;
+    }
+
+    .form-group .field-validation-error {
+        font-size: .75rem;
+        color: #c12;
+    }
+
+.text-dngr {
+    color: #c12;
+}
+
+input.no-edit {
+    border: 1px solid transparent;
+    background: none;
+    color: initial;
+    cursor: text;
+}
+
+div.form-controls {
+    margin: 20px 0;
+}
