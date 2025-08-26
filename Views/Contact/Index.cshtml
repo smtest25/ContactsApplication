@@ -1,0 +1,119 @@
+﻿@model IEnumerable<ContactsApplication.Models.ContactModel>
+@using Microsoft.AspNetCore.Mvc.Localization
+@using ContactsApplication.Resources
+@inject IHtmlLocalizer<GlobalResource> Resource
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+    <script src="~/js/js.js"></script>
+    <link href="~/css/css.css" rel="stylesheet" />
+
+    @if (ViewData["Sort"] != null)
+    {
+        <style>
+            a[data-sort="@ViewData["Sort"]"]::after {
+                color: #000;
+            }
+        </style>
+    }
+</head>
+<body>
+    <p>
+        <a class="bttn xtra" asp-action="Create" asp-route-sort="@ViewData["Sort"]" asp-route-filter="@ViewData["Filter"]">@Resource["Buttons.AddNew"]</a>
+    </p>
+    <table class="list">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                    <a href="#" class="sort-asc" title="@Resource["General.SortAsc"]" data-sort="FirstName:a"></a>
+                    <a href="#" class="sort-desc" title="@Resource["General.SortDesc"]" data-sort="FirstName:d"></a>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                    <a href="#" class="sort-asc" title="@Resource["General.SortAsc"]" data-sort="LastName:a"></a>
+                    <a href="#" class="sort-desc" title="@Resource["General.SortDesc"]" data-sort="LastName:d"></a>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Phone)
+                    <a href="#" class="sort-asc" title="@Resource["General.SortAsc"]" data-sort="Phone:a"></a>
+                    <a href="#" class="sort-desc" title="@Resource["General.SortDesc"]" data-sort="Phone:d"></a>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                    <a href="#" class="sort-asc" title="@Resource["General.SortAsc"]" data-sort="Email:a"></a>
+                    <a href="#" class="sort-desc" title="@Resource["General.SortDesc"]" data-sort="Email:d"></a>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.City)
+                    <a href="#" class="sort-asc" title="@Resource["General.SortAsc"]" data-sort="City:a"></a>
+                    <a href="#" class="sort-desc" title="@Resource["General.SortDesc"]" data-sort="City:d"></a>
+                </th>
+                <th>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <input type="text" name="filter" class="filter" data-col="FirstName" placeholder="@Resource["General.Filter"]" value="@ViewData["FilterFirstName"]">
+                </th>
+                <th>
+                    <input type="text" name="filter" class="filter" data-col="LastName" placeholder="@Resource["General.Filter"]" value="@ViewData["FilterLastName"]">
+                </th>
+                <th>
+                    <input type="text" name="filter" class="filter" data-col="Phone" placeholder="@Resource["General.Filter"]" value="@ViewData["FilterPhone"]">
+                </th>
+                <th>
+                    <input type="text" name="filter" class="filter" data-col="Email" placeholder="@Resource["General.Filter"]" value="@ViewData["FilterEmail"]">
+                </th>
+                <th>
+                    <input type="text" name="filter" class="filter" data-col="City" placeholder="@Resource["General.Filter"]" value="@ViewData["FilterCity"]">
+                </th>
+                <th class="clearfilter">
+                    <a class="bttn text" asp-action="Index" asp-route-sort="@ViewData["Sort"]">@Resource["Buttons.ClearFilters"]</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                    <td class="buttons">
+                        <a class="bttn norm" asp-action="Detail" asp-route-id="@item.ID" asp-route-sort="@ViewData["Sort"]" asp-route-filter="@ViewData["Filter"]">@Resource["Buttons.Detail"]</a>
+                        <a class="bttn xtra" asp-action="Edit" asp-route-id="@item.ID" asp-route-sort="@ViewData["Sort"]" asp-route-filter="@ViewData["Filter"]">@Resource["Buttons.Edit"]</a>
+                        <a class="bttn dngr delete" href="#" data-msg="@Resource["General.ConfirmDelete"]">@Resource["Buttons.Delete"]</a>
+                        <form class="delete" asp-action="Delete">
+                            <input type="hidden" value="@item.ID" name="ID" />
+                            <input type="hidden" value="" name="sort" />
+                            <input type="hidden" value="" name="filter" />
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
